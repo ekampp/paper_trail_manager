@@ -54,11 +54,6 @@ class PaperTrailManager
       return h(name)
     end
 
-    # Returns sorted array of types of items that there are changes for.
-    def change_item_types
-      return ActiveRecord::Base.connection.select_values('SELECT DISTINCT(item_type) FROM versions ORDER BY item_type')
-    end
-
     # Returns HTML link for the item stored in the version, e.g. a link to a Company record stored in the version.
     def change_item_link(version)
       if url = change_item_url(version)
