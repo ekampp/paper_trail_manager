@@ -19,7 +19,8 @@ class PaperTrailManager < Rails::Engine
   end
 
   @@whodunnit_name_method = :name
-  cattr_accessor :whodunnit_class, :whodunnit_name_method, :route_helpers, :layout, :base_controller, :user_path_method
+  cattr_accessor :whodunnit_class, :whodunnit_name_method, :route_helpers,
+    :layout, :base_controller, :user_path_method, :item_name_method
 
   self.base_controller = "ApplicationController"
   self.user_path_method = :user_path
