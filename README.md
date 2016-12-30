@@ -61,6 +61,10 @@ engine's ApplicationController configure it to use your engine's url helpers:
     PaperTrailManager.base_controller = "MyEngine::ApplicationController"
     PaperTrailManager.route_helpers = MyEngine::Engine.routes.url_helpers
 
+If you wish to use another model class insetad of PaperTrail::Version:
+
+    PaperTrailManager.version_model = 'MyEngine::Version'
+
 You can also specify the layout:
 
     PaperTrailManager.layout = 'my_engine/application'

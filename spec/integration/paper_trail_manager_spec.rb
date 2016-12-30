@@ -48,7 +48,7 @@ describe PaperTrailManager, :versioning => true do
     after do
       Entity.destroy_all
       Platform.destroy_all
-      PaperTrail::Version.destroy_all
+      PaperTrailManager.version_model.destroy_all
     end
 
     context "index" do
@@ -180,7 +180,7 @@ describe PaperTrailManager, :versioning => true do
         it "should rollback a delete by restoring the record" do
           Entity.exists?(@flanchan.id).should be_falsey
 
-          put change_path(PaperTrail::Version.where(:item_id => @flanchan.id, :item_type => "Entity").last)
+          put change_path(PaperTrailManager.version_model.where(:item_id => @flanchan.id, :item_type => "Entity").last)
 
           flanchan = Entity.find(@flanchan.id)
           flanchan.status.should == "The Embodiment of Scarlet Devil"

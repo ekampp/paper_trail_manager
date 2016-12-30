@@ -16,7 +16,7 @@ class PaperTrailManager::ChangesController
       return(redirect_to root_url)
     end
 
-    @versions = PaperTrail::Version.order('created_at DESC, id DESC')
+    @versions = PaperTrailManager.version_model.order('created_at DESC, id DESC')
     if params[:type]
       @versions = @versions.where(:item_type => params[:type])
     end
@@ -44,7 +44,7 @@ class PaperTrailManager::ChangesController
   # Show a change
   def show
     begin
-      @version = PaperTrail::Version.find(params[:id])
+      @version = PaperTrailManager.version_model.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "No such version."
       return(redirect_to :action => :index)
@@ -64,7 +64,7 @@ class PaperTrailManager::ChangesController
   # Rollback a change
   def update
     begin
-      @version = PaperTrail::Version.find(params[:id])
+      @version = PaperTrailManager.version_model.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       flash[:error] = "No such version."
       return(redirect_to(changes_path))

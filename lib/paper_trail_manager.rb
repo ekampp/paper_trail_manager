@@ -20,9 +20,10 @@ class PaperTrailManager < Rails::Engine
 
   @@whodunnit_name_method = :name
   cattr_accessor :whodunnit_class, :whodunnit_name_method, :route_helpers,
-    :layout, :base_controller, :user_path_method
+    :layout, :base_controller, :version_model, :user_path_method
 
   self.base_controller = "ApplicationController"
+  self.version_model = "::PaperTrail::Version"
   self.user_path_method = :user_path
 
   (Pathname(__FILE__).dirname + '..').tap do |base|
@@ -63,5 +64,10 @@ class PaperTrailManager < Rails::Engine
   # ::allow_revert_when was specified, always return +true+.
   def self.allow_revert?(controller, version)
     allow_revert_block.call controller, version
+  end
+
+  def self.version_model
+    @@version_model_class ||= @@version_model.respond_to?(:constantize) \
+      ? @@version_model.constantize : @@version_model
   end
 end
