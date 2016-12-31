@@ -13,24 +13,24 @@
 ActiveRecord::Schema.define(version: 20110228094444) do
 
   create_table "entities", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "status",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "platforms", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "status",     limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  limit: 255, null: false
-    t.integer  "item_id",                null: false
-    t.string   "event",      limit: 255, null: false
-    t.string   "whodunnit",  limit: 255
+    t.string   "item_type",  null: false
+    t.integer  "item_id",    null: false
+    t.string   "event",      null: false
+    t.string   "whodunnit"
     t.text     "object"
     t.datetime "created_at"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
